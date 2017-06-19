@@ -15,13 +15,35 @@ void setup(){
 }
 void loop(){
   motorDelay = analogRead(AnalogX);
+  //singleExcite(1);
+  twoStep(1);
+}
+
+void twoStep(int dTime){
+  int current = 0;
+  int next = 0;
   for (int i = 0; i<4;i++){
+    current = i;
+    if (current == 3){
+      next = 0;
+    }else{
+      next = current+1;
+    }
+    digitalWrite(pins[current],HIGH);
+    delay(dTime);
+    digitalWrite(pins[next],HIGH);
+    delay(dTime);
+    digitalWrite(pins[current],LOW);
+  }
+}
+
+void singleExcite(int dTime){
+    for (int i = 0; i<4;i++){
     for (int j = 0; j<4; j++){
-      digitalWrite(pins[j],LOW);
+        digitalWrite(pins[j],LOW);
     }
     digitalWrite(pins[i], HIGH);
-    delay(150);
-    digitalWrite(pinsOpp[i], HIGH);
+    delay(dTime);
   }
 }
 
