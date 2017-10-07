@@ -9,6 +9,9 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 #include <Servo.h>
 
 Servo myservo;  // create servo object to control a servo
+Servo leftarm;
+Servo rightarm;
+
 int pos = 0;    // variable to store the servo position
 int d = 5;
 int cnt = 0;
@@ -16,10 +19,14 @@ int cntMax = d*5;
 
 void setup() {
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  leftarm.attach(5);
+  rightarm.attach(6);
   Serial.begin(115200); // Open serial monitor at 115200 baud to see ping results.
 }
 
 void loop() {
+  leftarm.write(0);
+  leftarm.write(0);
   for (pos = 0; pos <= 180; pos++) { // goes from 0 degrees to 180 degrees
     delay(d);
     cnt+=d;
@@ -28,7 +35,7 @@ void loop() {
       unsigned int uS = sonar.ping(); // Send ping, get ping time in microseconds (uS). 
       delay(20);
       Serial.println(uS/US_ROUNDTRIP_CM);
-      if (uS / US_ROUNDTRIP_CM > 1 && uS/US_ROUNDTRIP_CM < 10){
+      if (uS / US_ROUNDTRIP_CM > 1 && uS/US_ROUNDTRIP_CM < 50){
         Serial.println("Target aquired");
         pos=pos-1;
       }else{
