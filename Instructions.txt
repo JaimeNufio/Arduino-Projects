@@ -1,0 +1,16 @@
+------------------------------
+ Instructions For Arduino IDE 
+------------------------------
+
+Incase Error Opening Serial Port
+
+1)Find dialout error
+ls -l /dev/ttyACM*
+
+will get:
+crw-rw---- 1 root dialout 188, 0 5 apr 23.01 ttyACM0
+
+0 may be different, we need dialout
+
+2) add our user group
+sudo usermod -a -G dialout <username>
