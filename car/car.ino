@@ -7,8 +7,8 @@ int enB = 13;
 int in3 = 10;
 int in4 = 11;
 
-int a=3;
-int b=2;
+int s1=3;
+int s2=2;
 
 int relay = 7;
 int tempspd= 170;
@@ -22,8 +22,8 @@ void setup(){
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
   pinMode(relay, OUTPUT);
-//  pinMode(s1, INPUT);
-//  pinMode(s2, INPUT);
+  pinMode(s1, INPUT);
+  pinMode(s2, INPUT);
   digitalWrite(relay,HIGH);
 
   recto(true);
@@ -55,7 +55,7 @@ void spin(){
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
   delay(100);
-  if (digitalRead(a) == LOW || digitalRead(b) == LOW){
+  if (digitalRead(s1) == LOW || digitalRead(s2) == LOW){
     spin();
   }
 }
@@ -132,7 +132,7 @@ void loop(){
   
   delay(5);
 
-  if (digitalRead(a) == LOW || digitalRead(b) == LOW){
+  if (digitalRead(s1) == LOW || digitalRead(s2) == LOW){
     turn(500);
   }
   /*
